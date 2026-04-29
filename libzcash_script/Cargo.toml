@@ -66,7 +66,7 @@ external-secp = []
 test-dependencies = []
 
 [dependencies]
-zcash_script.workspace = true
+zcash_script = "0.4"
 
 tracing.workspace = true
 thiserror.workspace = true
@@ -76,7 +76,7 @@ bindgen.workspace = true
 cc.workspace = true
 
 [dev-dependencies]
-zcash_script = { path = "../zcash_script", features = ["test-dependencies"] }
+zcash_script = { version = "0.4", features = ["test-dependencies"] }
 
 hex.workspace = true
 lazy_static.workspace = true

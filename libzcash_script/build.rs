@@ -35,12 +35,10 @@ fn bindgen_headers() -> Result<()> {
         // Tell cargo to invalidate the built crate whenever any of the
         // included header files changed.
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
-        // This can be removed once rust-lang/rust-bindgen#3049 is fixed.
-        .rust_target(
-            env!("CARGO_PKG_RUST_VERSION")
-                .parse()
-                .expect("Cargo ‘rust-version’ is a valid value"),
-        )
+        // Hardcode the highest RustTarget supported by bindgen 0.69 (the version pinned by
+        // librocksdb-sys 0.16). The original code parsed CARGO_PKG_RUST_VERSION ("1.81"),
+        // which bindgen 0.69's RustTarget::FromStr does not recognize.
+        .rust_target(bindgen::RustTarget::Stable_1_73)
         .use_core()
         // Finish the builder and generate the bindings.
         .generate()
